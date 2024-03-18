@@ -191,6 +191,37 @@ body {
                 width: 20px;
             }
         }
+
+                /* 適應手機設備 */
+        @media only screen and (max-width: 768px) {
+         /* 在此定義適用於手機尺寸的CSS樣式 */
+             .sidebar-container {
+             width: 200px; /* 調整側邊欄寬度 */
+        }
+        .main-content {
+            margin-left: 0; /* 移除主要內容區域的左側外邊距 */
+        }
+        header {
+            height: 80px; /* 調整頁首高度 */
+        }
+        footer {
+            padding-left: 0; /* 移除頁脚的左填充 */
+        }
+}
+
+        /* 適應平板設備 */
+        @media only screen and (min-width: 769px) and (max-width: 1024px) {
+        /* 在此定義適用於平板尺寸的CSS樣式 */
+        .sidebar-container {
+        width: 250px; /* 恢復側邊欄原始寬度 */
+        }
+}
+
+        /* 適應大型裝置（例如桌面電腦） */
+        @media only screen and (min-width: 1025px) {
+            /* 在此定義適用於大型裝置的CSS樣式 */
+}       
+
     </style>
 </head>
 <body>
@@ -209,9 +240,11 @@ body {
     <div class="sidebar-container" id="sidebarContainer">
         <div class="sidebar">
             <!-- 側邊欄內容 -->
-            <a href="#">SHOP</a>
-            <a href="#">About Our</a>
+            <a href="#">Our Services</a>
+            <a href="#">About US</a>
             <a href="#">Contact Us</a>
+            <a href="#">FAQ</a>
+            <a href="#">Previous Works</a>
         </div>
     </div>
 
