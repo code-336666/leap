@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>futureleap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- 引入Montserrat字體 -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,286;1,286&display=swap" rel="stylesheet">
+   <style>
+   /* 定義側邊欄樣式 */
+        body {
+            /* 使用線性漸變從上到下的背景色 */
+            background: #333333;
+            width: 100%; /* 寬度 */
+            height: 100%; /* 高度 */
+            margin: 0; /* 取消body的預設外邊距 */
+            padding: 0; /* 取消body的預設內邊距 */
+            font-family: 'Arial', sans-serif; /* 更改全局字體 */
+            color: #ffffff; /* 更改全局文字顏色 */
+        }
+        
+        a {
+            text-decoration: none; /* 移除链接的下划线 */
+        }
+
+        .main-content {
+            min-height: 100vh; /* 確保內容區域至少與視窗高度一樣高 */
+            /* 其他樣式 */
+        }
+
+        .sidebar-container {
+            position: fixed; /* 固定在頁面上 */
+            top: 0; /* 位於頁面頂部 */
+            left: -250px; /* 初始隱藏在左側 */
+            width: 250px; /* 寬度 */
+            height: 100%; /* 高度 */
+            background: #333333; /* 更改背景色 */
+            transition: left 0.5s; /* 添加過渡效果 */
+            z-index: 1; /* 將側邊欄層級設置為更高 */
+            padding-top: 50px; /* 增加頂部內邊距，以避免與頁首重疊 */
+        }
+
+        /* 樣式化側邊欄連結 */
+        .sidebar a {
+            display: block; /* 塊級元素 */
+            padding: 10px 20px; /* 上下內邊距 */
+            text-decoration: none; /* 移除下劃線 */
+            color: rgba(255, 255, 255, 0.8); /* 文字顏色 */
+            transition: background-color 0.3s; /* 添加過渡效果 */
+        }
+
+        /* 滑鼠懸停時改變連結背景顏色 */
+        .sidebar a:hover {
+            background-color: #555555; /* 改變背景顏色 */
+        }
+
+        /* 定義標題樣式 */
+        h1 {
+            font-family: 'Montserrat', sans-serif; /* 字体 */
+            text-align: center; /* 居中 */
+            color: transparent; /* 文字颜色设置为透明 */
+            cursor: pointer; /* 鼠标指针样式 */
+            transition: transform 0.3s; /* 添加过渡效果 */
+            z-index: 1; /* 设置层级 */
+            margin-left: -230px; /* 向左移动230像素 */
+            background: linear-gradient(to right, #ff7e5f, #feb47b, #ffeda3); /* 添加渐变背景 */
+            -webkit-background-clip: text; /* 将背景限制为文字内容 */
+            background-clip: text;
+        }
+
+        /* 滑鼠懸停時標題的樣式 */
+        h1:hover {
+            transform: scale(1.1); /* 放大標題 */
+        }
+
+        /* 設置段落樣式 */
+        p{
+            font-family: 'Montserrat', sans-serif; /* 字體 */
+            text-align: center; /* 居中 */
+            color: transparent; /* 文字颜色设置为透明 */
+            transition: transform 0.3s; /* 添加過渡效果 */
+            margin-left: -230px; /* 向左移动230像素 */
+            font-size: 25px;
+            font-weight: 800;
+            background: linear-gradient(to right, #FFD700, #FFA500, #FF6347, #FF4500, #FF0000);
+            -webkit-background-clip: text; /* 将背景限制为文字内容 */
+            background-clip: text;
+        }
+
+        /* 頁首樣式 */
+        header {
+                position: fixed; /* 固定在頁面上 */
+                top: 0; /* 位於頁面頂部 */
+                width: 100%; /* 寬度佔滿整個頁面 */
+                background-color: #2C3E50; /* 背景顏色 */
+                color: #ECF0F1; /* 文字顏色 */
+                padding: 5px; /* 內邊距 */
+                text-align: center; /* 文本居中 */
+                z-index: 2; /* 設置層級高於側邊欄 */
+                height: 70px;
+                margin-left: 0px; /* 將左方距離設置為0 */
+                font-family: 'Montserrat', sans-serif; /* 字體 */
+        }
+
+       /* 頁脚樣式 */
+        footer {
+                position: fixed; /* 固定在頁面上 */
+                bottom: 0; /* 位於頁面底部 */
+                width: 100%; /* 寬度佔滿整個頁面 */
+                background-color: #2C3E50; /* 背景顏色 */
+                color: #ECF0F1; /* 文字顏色 */
+                padding: 5px; /* 內邊距 */
+                text-align: center; /* 文本居中 */
+                font-family: 'Montserrat', sans-serif; /* 字體 */
+                z-index: 2; /* 設置層級高於側邊欄 */
+        }
+
+        /* 漢堡菜單樣式 */
+        .hamburger-menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 30px;
+            height: 50px;
+            cursor: pointer;
+            position: fixed;
+            top: 5px;
+            left: 20px;
+            z-index: 3; /* 設置層級高於其他元素 */
+        }
+
+        .bar {
+            width: 100%;
+            height: 3px;
+            background-color: #ECF0F1;
+            margin: 3px 0;
+            transition: transform 0.3s;
+        }
+
+        /* 漢堡菜單激活狀態樣式 */
+        .hamburger-menu.active .bar:nth-child(1) {
+            transform: translateY(6px) rotate(45deg);
+        }
+
+        .hamburger-menu.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active .bar:nth-child(3) {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+
+        /* 適應手機設備 */
+        @media (max-width: 768px) {
+            .bar {
+                width: 20px;
+            }
+        }
+
+                /* 適應手機設備 */
+        @media only screen and (max-width: 768px) {
+         /* 在此定義適用於手機尺寸的CSS樣式 */
+             .sidebar-container {
+             width: 200px; /* 調整側邊欄寬度 */
+        }
+        .main-content {
+            margin-left: 0; /* 移除主要內容區域的左側外邊距 */
+        }
+        header {
+            height: 80px; /* 調整頁首高度 */
+        }
+        footer {
+            padding-left: 0; /* 移除頁脚的左填充 */
+        }
+}
+
+        /* 適應平板設備 */
+        @media only screen and (min-width: 769px) and (max-width: 1024px) {
+        /* 在此定義適用於平板尺寸的CSS樣式 */
+        .sidebar-container {
+        width: 250px; /* 恢復側邊欄原始寬度 */
+        }
+}
+
+        /* 適應大型裝置（例如桌面電腦） */
+        @media only screen and (min-width: 1025px) {
+            /* 在此定義適用於大型裝置的CSS樣式 */
+}       
+
+        /* 按钮基本样式 */
+        button {
+            background: linear-gradient(to right, #000000, #333333, #666666); /* 添加渐变背景 */
+            color: white; /* 文字颜色 */
+            padding: 10px 20px; /* 内边距 */
+            border: none; /* 去除边框 */
+            border-radius: 5px; /* 圆角 */
+            cursor: pointer; /* 鼠标指针样式 */
+            transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
+        }
+
+        /* 按钮悬停效果 */
+        button:hover {
+            background: linear-gradient(to right, #ff7e5f, #feb47b, #ffeda3); /* 添加渐变背景 */
+        }
+
+        /* 按钮按下效果 */
+        button:active {
+            background-color: #cc9999; /* 按下时背景颜色 */
+        }
+
+        /* 按钮禁用效果 */
+        button:disabled {
+            background-color: #cccccc; /* 禁用时背景颜色 */
+            cursor: not-allowed; /* 禁用时鼠标指针样式 */
+        }
+
+        .product p {
+            margin-left: -10px; /* 将商品价格向左移动 10px */
+        }
+
+        .product-grid {
+            
+            display: flex; /* 使用 Flexbox 布局 */
+            flex-wrap: wrap; /* 允许项目自动换行 */
+            margin-left: 0; /* 初始左边距为 0 */
+            margin-top: 200px; /* 向下移动200像素 */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* 将商品格容器项目居中对齐 */
+            margin-left: 0;
+            margin-top: 200px;
+        }
+
+        .product {
+            width: calc(20% - 10px); /* 计算每个商品框的宽度，考虑到间隔 */
+            margin: 30px; /* 设置商品框之间的间隔 */
+            text-align: center; /* 将商品框内文本居中对齐 */
+        }
+
+
+    </style>
+
+</head>
+<body>
+    <!-- 頁首 -->
+    <header>    
+    </header>
+    
+    <!-- 漢堡菜單 -->
+    <div class="hamburger-menu" onclick="toggleSidebar()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <!-- 側邊欄容器 -->
+    <div class="sidebar-container" id="sidebarContainer">
+        <div class="sidebar">
+            <!-- 側邊欄內容 -->
+            <a href="#">Our Services</a>
+            <a href="#">About US</a>
+            <a href="#">Contact Us</a>
+            <a href="#">FAQ</a>
+            <a href="#">Previous Works</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <!-- 商品格开始 -->
+        <div class="product-grid">
+            <div class="product">
+                <img src="product1.jpg" alt="Product 1">
+                <h3>Product 1</h3>
+                <p>$19.99</p>
+                <button>Add to Cart</button>
+            </div>
+            <!--------------->
+            <div class="product">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Product 2</h3>
+                <p>$24.99</p>
+                <button>Add to Cart</button>
+            </div>
+            <!--------------->
+            <div class="product">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Product 3</h3>
+                <p>$5.25</p>
+                <button>Add to Cart</button>
+            </div>
+            <!--------------->
+            <div class="product">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Product 4</h3>
+                <p>$12.50</p>
+                <button>Add to Cart</button>
+            </div>
+            <!--------------->
+            <div class="product">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Product 5</h3>
+                <p>$8.75</p>
+                <button>Add to Cart</button>
+            </div>
+            <!--------------->
+            <div class="product">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Product 6</h3>
+                <p>$19.99</p>
+                <button>Add to Cart</button>
+            </div>
+            <!--------------->
+            <div class="product">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Product 7</h3>
+                <p>$22.40</p>
+                <button>Add to Cart</button>
+            </div>
+            <!--------------->
+            <div class="product">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Product 8</h3>
+                <p>$18.75</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+        <!-- 商品格结束 -->
+
+    <!-- 主要內容區域 -->
+    <header>
+        <h1>We believe Each and every individual is capable of possessing better future</h1>
+    </header>
+
+    <!-- 頁脚 -->
+    <footer>
+        <p>&copy; 2024 FutureLeap.</p>
+
+    </footer>
+    
+    <script>
+        function toggleSidebar() {
+        var sidebarContainer = document.getElementById('sidebarContainer');
+        var productGrid = document.querySelector('.product-grid'); // 获取商品格容器
+
+    if (sidebarContainer.style.left === '-250px') {
+        sidebarContainer.style.left = '0';
+        productGrid.style.marginLeft = '250px'; // 当侧边栏出现时，为商品格添加左边距
+    } else {
+        sidebarContainer.style.left = '-250px';
+        productGrid.style.marginLeft = '0'; // 当侧边栏隐藏时，将左边距设为 0
+    }
+}
+
+        // 切換側邊欄的顯示狀態
+        function toggleSidebar() {
+            var sidebarContainer = document.getElementById('sidebarContainer');
+            // 檢查當前側邊欄的位置
+            if (sidebarContainer.style.left === '-250px') {
+                // 如果側邊欄隱藏，則展開它
+                sidebarContainer.style.left = '0';
+            } else {
+                // 如果側邊欄顯示，則隱藏它
+                sidebarContainer.style.left = '-250px';
+            }
+        }
+    </script>
+</body>
+</html>
