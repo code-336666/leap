@@ -60,18 +60,11 @@
             font-family: 'Montserrat', sans-serif; /* 字体 */
             text-align: center; /* 居中 */
             color: transparent; /* 文字颜色设置为透明 */
-            cursor: pointer; /* 鼠标指针样式 */
-            transition: transform 0.3s; /* 添加过渡效果 */
             z-index: 1; /* 设置层级 */
-            margin-left: -230px; /* 向左移动230像素 */
+            margin-left: 0px; /* 向左移动230像素 */
             background: linear-gradient(to right, #ff7e5f, #feb47b, #ffeda3); /* 添加渐变背景 */
             -webkit-background-clip: text; /* 将背景限制为文字内容 */
             background-clip: text;
-        }
-
-        /* 滑鼠懸停時標題的樣式 */
-        h1:hover {
-            transform: scale(1.1); /* 放大標題 */
         }
 
         /* 設置段落樣式 */
@@ -151,70 +144,6 @@
             transform: translateY(-6px) rotate(-45deg);
         }
 
-        /* 適應手機設備 */
-        @media (max-width: 768px) {
-            .bar {
-                width: 20px;
-            }
-        }
-
-                /* 適應手機設備 */
-        @media only screen and (max-width: 768px) {
-         /* 在此定義適用於手機尺寸的CSS樣式 */
-             .sidebar-container {
-             width: 200px; /* 調整側邊欄寬度 */
-        }
-        .main-content {
-            margin-left: 0; /* 移除主要內容區域的左側外邊距 */
-        }
-        header {
-            height: 80px; /* 調整頁首高度 */
-        }
-        footer {
-            padding-left: 0; /* 移除頁脚的左填充 */
-        }
-}
-
-        /* 適應平板設備 */
-        @media only screen and (min-width: 769px) and (max-width: 1024px) {
-        /* 在此定義適用於平板尺寸的CSS樣式 */
-        .sidebar-container {
-        width: 250px; /* 恢復側邊欄原始寬度 */
-        }
-}
-
-        /* 適應大型裝置（例如桌面電腦） */
-        @media only screen and (min-width: 1025px) {
-            /* 在此定義適用於大型裝置的CSS樣式 */
-}       
-
-        /* 按钮基本样式 */
-        button {
-            background: linear-gradient(to right, #000000, #333333, #666666); /* 添加渐变背景 */
-            color: white; /* 文字颜色 */
-            padding: 10px 20px; /* 内边距 */
-            border: none; /* 去除边框 */
-            border-radius: 5px; /* 圆角 */
-            cursor: pointer; /* 鼠标指针样式 */
-            transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
-        }
-
-        /* 按钮悬停效果 */
-        button:hover {
-            background: linear-gradient(to right, #ff7e5f, #feb47b, #ffeda3); /* 添加渐变背景 */
-        }
-
-        /* 按钮按下效果 */
-        button:active {
-            background-color: #cc9999; /* 按下时背景颜色 */
-        }
-
-        /* 按钮禁用效果 */
-        button:disabled {
-            background-color: #cccccc; /* 禁用时背景颜色 */
-            cursor: not-allowed; /* 禁用时鼠标指针样式 */
-        }
-
         .product p {
             margin-left: -10px; /* 将商品价格向左移动 10px */
         }
@@ -237,15 +166,10 @@
             margin: 30px; /* 设置商品框之间的间隔 */
             text-align: center; /* 将商品框内文本居中对齐 */
         }
-
-
     </style>
 
 </head>
 <body>
-    <!-- 頁首 -->
-    <header>    
-    </header>
     
     <!-- 漢堡菜單 -->
     <div class="hamburger-menu" onclick="toggleSidebar()">
@@ -273,63 +197,59 @@
                 <img src="product1.jpg" alt="Product 1">
                 <h3>Product 1</h3>
                 <p>$19.99</p>
-                <button>Add to Cart</button>
             </div>
             <!--------------->
             <div class="product">
                 <img src="product2.jpg" alt="Product 2">
                 <h3>Product 2</h3>
                 <p>$24.99</p>
-                <button>Add to Cart</button>
             </div>
             <!--------------->
             <div class="product">
                 <img src="product2.jpg" alt="Product 2">
                 <h3>Product 3</h3>
                 <p>$5.25</p>
-                <button>Add to Cart</button>
             </div>
             <!--------------->
             <div class="product">
                 <img src="product2.jpg" alt="Product 2">
                 <h3>Product 4</h3>
                 <p>$12.50</p>
-                <button>Add to Cart</button>
             </div>
             <!--------------->
             <div class="product">
                 <img src="product2.jpg" alt="Product 2">
                 <h3>Product 5</h3>
                 <p>$8.75</p>
-                <button>Add to Cart</button>
             </div>
             <!--------------->
             <div class="product">
                 <img src="product2.jpg" alt="Product 2">
                 <h3>Product 6</h3>
                 <p>$19.99</p>
-                <button>Add to Cart</button>
             </div>
             <!--------------->
             <div class="product">
                 <img src="product2.jpg" alt="Product 2">
                 <h3>Product 7</h3>
                 <p>$22.40</p>
-                <button>Add to Cart</button>
             </div>
             <!--------------->
             <div class="product">
                 <img src="product2.jpg" alt="Product 2">
                 <h3>Product 8</h3>
                 <p>$18.75</p>
-                <button>Add to Cart</button>
             </div>
         </div>
         <!-- 商品格结束 -->
-
+        <h1>
+            Please contact us if you are interested in our services or have any questions.
+        </h1>
     <!-- 主要內容區域 -->
     <header>
-        <h1>We believe Each and every individual is capable of possessing better future</h1>
+        <a href="index.html">
+            <img src="images/FUTUreleap.png" alt="Home" class="icon">
+        </a>
     </header>
 
     <!-- 頁脚 -->
@@ -337,7 +257,7 @@
         <p>&copy; 2024 FutureLeap.</p>
 
     </footer>
-    
+
     <script>
         function toggleSidebar() {
         var sidebarContainer = document.getElementById('sidebarContainer');
